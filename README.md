@@ -5,6 +5,9 @@ This is my first self-learning on Node.js by using this stuffs...
 1. Node.js
 2. MongoDB
 3. Express
+4. HTML
+5. JS
+6. EJS
 
 CR : Kong Ruksiam
 
