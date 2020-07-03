@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adding song</title>
+  </head>
+  <body>
+    <!-- Include file... -->
+    <% include layout %>
+
+    <!-- Gird layout -->
+    <div class="container-fluid">
+        <div class="col">
+        <br>
+        
+        <!-- Additional choice. There will be as much alert as errors are. -->
+        <!-- <% if(locals.lib_error)
+        {
+            Object.values(lib_error).map(error =>
+            { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= error.msg %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% })
+        } %> -->
+
+        <!-- If there are errors from @libary.js exists. -->
+        <% if(locals.lib_error) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <!-- If errors exist, then manage to print out using $error.  -->
+            <% Object.values(lib_error).forEach(error => { %>
+                <!-- Getting error message out. -->
+               <p><%= error.msg %></p> 
+            <% }) %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
+        
+        <!-- When added data succesfully, it shows. -->
+        <%- messages() %>
+
+        <!-- Card -->
+        <div class="card">
+          <div class="card-body">
+            <h1>Adding song form</h1>
+            <br>
+            <form action="/library/addsong" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Name</span>
+                            </div>
+                            <input class="form-control" placeholder="Name of the song." aria-describedby="basic-addon1" id="inputName" name="inputName">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Artist</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name of the artist(s)." aria-describedby="basic-addon1" id="inputArtist" name="inputArtist">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Album</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name of the album." aria-describedby="basic-addon1" id="inputAlbum" name="inputAlbum">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Written by</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name of the song writer(s)." aria-describedby="basic-addon1" id="inputWriter" name="inputWriter">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Produced by</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name of the producer(s)." aria-describedby="basic-addon1" id="inputProducer" name="inputProducer">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Genre</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Genre(s) of the song." aria-describedby="basic-addon1" id="inputGenre" name="inputGenre">
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Lyrics</span>
+                            </div>
+                            <textarea class="form-control" rows="7" id="inputLyrics" name="inputLyrics"></textarea>
+                        </div>
+                        <br>
+                        <div style="float: right;">
+                            <button class="btn btn-outline-success" type="submit">Submit</button>
+                            <a href="/library" class="btn btn-danger active" role="button" aria-pressed="true">Back to library</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+        $(function() 
+        {
+            $('#messages').addClass('alert alert-success')
+        })
+    </script>
+
+  </body>
+</html>
